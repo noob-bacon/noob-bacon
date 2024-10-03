@@ -28,6 +28,7 @@ TextButton.Font = Enum.Font.SourceSans
 TextButton.Text = ":3"
 TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton.TextSize = 23.000
+TextButton.Draggable = true
 TextButton.MouseButton1Down:Connect(function()
 	game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6" , false , game)
 end)
