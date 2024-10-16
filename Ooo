@@ -25,7 +25,7 @@ TextButton.MouseButton1Down:Connect(function()
 end)
 
 UICorner.CornerRadius = UDim.new(1, 1)
-UICorner.Parent = ImageButtonv
+UICorner.Parent = ImageButton
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
