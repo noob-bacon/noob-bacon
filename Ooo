@@ -1,158 +1,276 @@
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
-local window = DrRayLibrary:Load("DrRay", "Default")
+local Window = Fluent:CreateWindow({
+    Title = "Fluent " .. Fluent.Version,
+    SubTitle = "by dawid",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.F6
+})
 
-local tab = DrRayLibrary.newTab("Lobby", "rbxassetid://4483345998")
+-- Main Tabs
+local Tabs = {
+    Lobby = Window:AddTab({ Title = "Lobby", Icon = "shield" }),
+    Items = Window:AddTab({ Title = "Items", Icon = "box" }),
+    Teleport = Window:AddTab({ Title = "Teleport", Icon = "map-pin" }),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "settings" })
+}
 
-tab.newLabel("free roles");
+-- Lobby Tab
+Tabs.Lobby:AddParagraph({
+    Title = "Free Roles",
+    Content = "Select a role"
+})
 
-tab.newButton("Police", "gun", function()
-    local A_1 = "Gun"
-    local A_2 = true
-    local Event =
-game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
-    Event:FireServer(A_1, A_2)
-end)
+Tabs.Lobby:AddButton({
+    Title = "Police",
+    Description = "Get Gun",
+    Callback = function()
+        local Event = game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
+        Event:FireServer("Gun", true)
+    end
+})
 
-tab.newButton("Swat", "gun", function()
-    local A_1 = "SwatGun"
-    local A_2 = true
-    local Event =
-game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
-    Event:FireServer(A_1, A_2)
-end)
+Tabs.Lobby:AddButton({
+    Title = "Swat",
+    Description = "Get SwatGun",
+    Callback = function()
+        local Event = game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
+        Event:FireServer("SwatGun", true)
+    end
+})
 
-local tab = DrRayLibrary.newTab("items", "rbxassetid://4483345998")
+-- Items Tab
+Tabs.Items:AddParagraph({
+    Title = "Food",
+    Content = "Get items"
+})
 
-tab.newLabel("food")
+Tabs.Items:AddButton({
+    Title = "Get Chips",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Chips")
+    end
+})
 
-tab.newButton("Get Chips", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Chips")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Cola",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("BloxyCola")
+    end
+})
 
-tab.newButton("Get Cola", "item!", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("BloxyCola")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Apple",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Apple")
+    end
+})
 
-tab.newButton("Get Apple", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Apple")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Pizza",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Pizza3")
+    end
+})
 
-tab.newButton("Get Pizza", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Pizza3")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Cookie",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cookie")
+    end
+})
 
-tab.newButton("Get Cookie", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cookie")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Lollipop",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Lollipop")
+    end
+})
 
-tab.newButton("Get Lollipop", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Lollipop")
-end)
+Tabs.Items:AddParagraph({
+    Title = "Weapons",
+    Content = "Get weapons"
+})
 
-tab.newLabel("weapons")
+Tabs.Items:AddButton({
+    Title = "Sword",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("LinkedSword")
+    end
+})
 
-tab.newButton("Sword", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("LinkedSword")
-end)
+Tabs.Items:AddButton({
+    Title = "Bat",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Bat")
+    end
+})
 
-tab.newButton("bat", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Bat")
-end)
+Tabs.Items:AddButton({
+    Title = "Hammer",
+    Callback = function()
+        local Event = game:GetService("ReplicatedStorage").RemoteEvents.BasementWeapon
+        Event:FireServer(true, "Hammer")
+    end
+})
 
-tab.newButton("hammer", "item", function()
-    local A_1 = true
-    local A_2 = "Hammer"
-    local Event = game:GetService("ReplicatedStorage").RemoteEvents.BasementWeapon
-    Event:FireServer(A_1, A_2)
-end)
+Tabs.Items:AddParagraph({
+    Title = "Other",
+    Content = "Get other items"
+})
 
-tab.newLabel("other")
+Tabs.Items:AddButton({
+    Title = "Get Cure",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cure")
+    end
+})
 
-tab.newButton("Get Cure", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cure")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Medkit",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("MedKit")
+    end
+})
 
-tab.newButton("Get Medkit", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("MedKit")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Key",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Key")
+    end
+})
 
-tab.newButton("Get Key", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Key")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Teddy",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("TeddyBloxpin")
+    end
+})
 
-tab.newButton("Get Teddy", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("TeddyBloxpin")
-end)
+Tabs.Items:AddButton({
+    Title = "Get Planks",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Plank")
+    end
+})
 
-tab.newButton("Get Planks", "item", function()
-game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Plank")
-end)
+-- Teleport Tab
+Tabs.Teleport:AddButton({
+    Title = "House",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-36, 3, -200)
+    end
+})
 
-local tab = DrRayLibrary.newTab("teleport", "rbxassetid://4483345998")
+Tabs.Teleport:AddButton({
+    Title = "Basement",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(71, -15, -163)
+    end
+})
 
-tab.newButton("House", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-36, 3, -200)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Attic",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16, 35, -220)
+    end
+})
 
-tab.newButton("Basement", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(71, -15, -163)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Upstairs",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15.68, 18.25, -218.67)
+    end
+})
 
-tab.newButton("Attic", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16, 35, -220)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Hiding Spot",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-42.87, 6.43, -222.01)
+    end
+})
 
-tab.newButton("Upstairs", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15.687989234924316, 18.254444122314453, -218.6653289794922)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Store",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-422, 3, -121)
+    end
+})
 
-tab.newButton("Hiding Spot", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-42.86656951904297, 6.433286666870117, -222.01171875)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Sewer",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(129, 3, -125)
+    end
+})
 
-tab.newButton("Store", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-422, 3, -121)
-end)
+Tabs.Teleport:AddButton({
+    Title = "Boss Room",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-39, -287, -1480)
+    end
+})
 
-tab.newButton("Sewer", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(129, 3, -125)
-end)
-
-tab.newButton("Boss Room", "tp", function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-39, -287, -1480)
-end)
-
-local tab = DrRayLibrary.newTab("Misc", "rbxassetid://4483345998")
-
-tab.newLabel("Misc")
-
-tab.newButton("kill all enemies", "misc", function()
-    for i,v in pairs(game.Workspace.BadGuys:GetChildren()) do
-        for i = 1, 50 do
-            game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v,10)
-            game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v,996)
-            game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v,9)
-            game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v,8)
-            game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v,996)
+-- Misc Tab
+Tabs.Misc:AddButton({
+    Title = "Kill All Enemies",
+    Callback = function()
+        for i, v in pairs(game.Workspace.BadGuys:GetChildren()) do
+            for i = 1, 50 do
+                game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v, 10)
+                game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v, 996)
+            end
         end
     end
-end)
+})
 
-tab.newButton("Open Safe", "misc", function()
-game.ReplicatedStorage.RemoteEvents.Safe:FireServer(game:GetService("Workspace").CodeNote.SurfaceGui.TextLabel.Text)
-end)
+Tabs.Misc:AddButton({
+    Title = "Open Safe",
+    Callback = function()
+        game.ReplicatedStorage.RemoteEvents.Safe:FireServer(game:GetService("Workspace").CodeNote.SurfaceGui.TextLabel.Text)
+    end
+})
 
-tab.newButton("Full heal", "misc", function()
-  for i = 1, 200 do
-      wait(0.005)
-      local A_1 = "Cat"
-      local Event = game:GetService("ReplicatedStorage").RemoteEvents.Energy
-      Event:FireServer(A_1)
-  end
-end)
+Tabs.Misc:AddButton({
+    Title = "Full Heal",
+    Callback = function()
+        for i = 1, 200 do
+            wait(0.005)
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer("Cat")
+        end
+    end
+})
 
-tab.newButton("friend cat", "misc", function()
-    local Target = game:GetService("ReplicatedStorage").RemoteEvents.Cattery;
-    Target:FireServer();
-end)
+Tabs.Misc:AddButton({
+    Title = "Friend Cat",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RemoteEvents.Cattery:FireServer()
+    end
+})
+
+-- SaveManager and InterfaceManager setup
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Misc)
+SaveManager:BuildConfigSection(Tabs.Misc)
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+SaveManager:LoadAutoloadConfig()
