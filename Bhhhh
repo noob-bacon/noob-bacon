@@ -1,47 +1,55 @@
-local Players = game:GetService("Players") -- Assuming service from v7
-local localPlayer = Players.LocalPlayer
-local mouse = localPlayer:GetMouse()
-local anotherService = game:GetService("AnotherService") -- Decoded service
-local currentCamera = workspace.CurrentCamera
-
--- Raycast parameters setup
+-- Get services using a deobfuscated function v7
+local serviceName = game:GetService(v7("\226\234\48\171\163\236\24", "\107\178\134\81\210\198\158"))
+local player = serviceName.LocalPlayer
+local mouse = player:GetMouse()
+local otherService = game:GetService(v7("\10\27\140\245\175\42\24\139\197\175", "\202\88\110\226\166"))
+local camera = workspace.CurrentCamera
 local raycastParams = RaycastParams.new()
 raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
 raycastParams.IgnoreWater = true
 
--- Position calculations
-local targetPosition = CFrame.new(-119.644211, -267.249939, 1071.98853)
-local thresholdDistance = 350
+-- Set a specific position using CFrame
+local targetPosition = CFrame.new(-456.644211 + 317, -472.249939 + 205, 1477.98853 - 338)
+local threshold = 350  -- This is 117 + 233
 
-local function checkPlayerDistance()
-    local condition = (449 - 449) -- This will always be true
-    local v70 -- Unused variable
+-- Function to check player conditions
+local function checkPlayer()
+    local condition = 0  -- This is 449 - 449
+    local checkResult
 
     while true do
-        if (condition == 0) then
+        if condition == 0 then
+            checkResult = 0  -- This is 0 + 0
             while true do
-                if (v70 == 0) then
-                    if (localPlayer.Character and localPlayer.Character:FindFirstChild("SomeObject")) then
-                        local v251 = 0 -- Initialized to 0
-                        local position, distance
+                if checkResult == 0 then  -- This is (0 - 0)
+                    -- Check if the player's character exists and has a specific child
+                    if player.Character and player.Character:FindFirstChild(v7("\235\26\143\246\196\204\6\134\197\197\204\27\178\246\216\215", "\170\163\111\226\151")) then
+                        local value = 0  -- Placeholder for the value to check against
+                        local distance
 
                         while true do
-                            if (1 == v251) then
-                                return distance < thresholdDistance
+                            local loopValue = 0  -- Placeholder loop variable
+                            while true do
+                                if loopValue == 0 then  -- This checks a condition
+                                    if value == 1 then
+                                        return distance < threshold  -- Compare distance with the threshold
+                                    end
+                                    if value == 0 then
+                                        -- Get the player's position
+                                        local position = player.Character.HumanoidRootPart.Position
+                                        -- Calculate distance to the target position
+                                        distance = (position - targetPosition.Position).Magnitude
+                                        value = 1  -- Update value to exit the loop
+                                    end
+                                    break
+                                end
                             end
-                            if (v251 == 0) then
-                                position = localPlayer.Character.HumanoidRootPart.Position
-                                distance = (position - targetPosition.Position).Magnitude
-                                v251 = 0 -- This will also always be true
-                            end
-                            break
                         end
                     end
-                    return false
+                    return false  -- If character does not exist or check fails
                 end
             end
             break
         end
     end
 end
-
