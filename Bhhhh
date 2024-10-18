@@ -1,1 +1,47 @@
-https://luaobfuscator.com/?session=2f1NtmF2r20j7Se1zSKyow8JqmG6Ma6Ux6QZUkqH1bC8Y31P48gkZqwMDFf6c8sd
+local Players = game:GetService("Players") -- Assuming service from v7
+local localPlayer = Players.LocalPlayer
+local mouse = localPlayer:GetMouse()
+local anotherService = game:GetService("AnotherService") -- Decoded service
+local currentCamera = workspace.CurrentCamera
+
+-- Raycast parameters setup
+local raycastParams = RaycastParams.new()
+raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+raycastParams.IgnoreWater = true
+
+-- Position calculations
+local targetPosition = CFrame.new(-119.644211, -267.249939, 1071.98853)
+local thresholdDistance = 350
+
+local function checkPlayerDistance()
+    local condition = (449 - 449) -- This will always be true
+    local v70 -- Unused variable
+
+    while true do
+        if (condition == 0) then
+            while true do
+                if (v70 == 0) then
+                    if (localPlayer.Character and localPlayer.Character:FindFirstChild("SomeObject")) then
+                        local v251 = 0 -- Initialized to 0
+                        local position, distance
+
+                        while true do
+                            if (1 == v251) then
+                                return distance < thresholdDistance
+                            end
+                            if (v251 == 0) then
+                                position = localPlayer.Character.HumanoidRootPart.Position
+                                distance = (position - targetPosition.Position).Magnitude
+                                v251 = 0 -- This will also always be true
+                            end
+                            break
+                        end
+                    end
+                    return false
+                end
+            end
+            break
+        end
+    end
+end
+
