@@ -1,1 +1,1 @@
-eda83533330c522e6375f59d9eb17da191dbcbcc92e906f84b927cd189656e14
+loadstring(game:HttpGet("https://nousigi.com/loader.lua"))() 
