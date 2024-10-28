@@ -1,1 +1,28 @@
-https://luaobfuscator.com/?session=36O4M7MgHv0WRPWDmi5mlXS6oid4Wc1CK2mh91elf1769hfsrmOt5zVIbP7jeCVt
+local screenGui = Instance.new("ScreenGui")
+local button = Instance.new("TextButton")
+local outline = Instance.new("Frame")
+local uiCornerButton = Instance.new("UICorner")
+local uiCornerOutline = Instance.new("UICorner")
+
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Button Setup
+button.Size = UDim2.new(0, 200, 0, 100)
+button.Position = UDim2.new(0.5, -100, 0.5, -50)
+button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Button color
+button.Text = "Click Me"
+button.Parent = screenGui
+
+-- Outline Setup
+outline.Size = UDim2.new(0, 210, 0, 110) -- Slightly larger than the button
+outline.Position = UDim2.new(0.5, -105, 0.5, -55) -- Adjust to center
+outline.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Outline color
+outline.Parent = screenGui
+
+-- UICorner for the Button
+uiCornerButton.CornerRadius = UDim.new(0, 15)
+uiCornerButton.Parent = button
+
+-- UICorner for the Outline
+uiCornerOutline.CornerRadius = UDim.new(0, 15)
+uiCornerOutline.Parent = outline
