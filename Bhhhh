@@ -1,12 +1,12 @@
--- Place this script in the button within the innermost Frame
+local button = script.Parent
 
--- Reference to the ScreenGui
-local screenGui = script.Parent.Parent.Parent.Parent -- Assumes the button is inside two nested Frames, which are inside the ScreenGui
+button.MouseButton1Click:Connect(function()
+    -- Destroy the entire GUI
+    local parentGui = button:FindFirstAncestorOfClass("ScreenGui")
+    if parentGui then
+        parentGui:Destroy()
+    end
 
--- Function to destroy the ScreenGui when the button is clicked
-local function onButtonClicked()
-    screenGui:Destroy()
-end
-
--- Connect the function to the button's MouseButton1Click event
-script.Parent.MouseButton1Click:Connect(onButtonClicked)
+    -- Load the external script
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/noob-bacon/Hi-libbbb/refs/heads/main/sigma-balls"))()
+end)
