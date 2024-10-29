@@ -1,7 +1,7 @@
 local button = script.Parent
 
 button.MouseButton1Click:Connect(function()
-    -- Destroy the entire GUI
+    -- Traverse up to find the top-level ScreenGui
     local parentGui = button:FindFirstAncestorOfClass("ScreenGui")
     if parentGui then
         parentGui:Destroy()
