@@ -16,7 +16,7 @@ TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextButton.BorderSizePixel = 0
 TextButton.Position = UDim2.new(0.0613545813, 0, 0.30392158, 0)
-TextButton.Size = UDim2.new(0.0796812773, 0, 0.0408496745, 0)
+TextButton.Size = UDim2.new(0.1593625546, 0, 0.0816993489, 0) -- Doubled size
 TextButton.Font = Enum.Font.SourceSans
 TextButton.Text = "Close😒"
 TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -26,35 +26,6 @@ TextButton.TextSize = 14.000
 
 local function ADHTQVC_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
-
-	local dragging = false
-	local dragStart = nil
-	local startPos = nil
-
-	local function updatePosition(input)
-		local delta = input.Position - dragStart
-		TextButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
-
-	TextButton.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			dragStart = input.Position
-			startPos = TextButton.Position
-
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-
-	TextButton.InputChanged:Connect(function(input)
-		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-			updatePosition(input)
-		end
-	end)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		if script.Parent.Text == "Close😒" then
