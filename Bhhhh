@@ -6,7 +6,7 @@
 local ScreenGui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
 
---Properties:
+-- Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -15,15 +15,30 @@ TextButton.Parent = ScreenGui
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.418326706, 0, 0, 0)
-TextButton.Size = UDim2.new(0.119521916, 0, 0.081699349, 0)
+TextButton.Position = UDim2.new(0.0613545813, 0, 0.30392158, 0)
+TextButton.Size = UDim2.new(0.0796812773, 0, 0.0408496745, 0)
 TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "open"
+TextButton.Text = "Close😒"
 TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextSize = 30.000
-TextButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6" , false , game)
-end)
+TextButton.TextSize = 14.000
+
+-- Scripts:
+
+local function ADHTQVC_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.MouseButton1Down:Connect(function()
+		if script.Parent.Text == "Close😒" then
+			script.Parent.Text = "Open😎" -- Change the text.
+		else
+			script.Parent.Text = "Close😒" -- Change it back.
+		end
+		-- Simulate F6 key press
+		game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.F6, false, game)
+	end)
+	
+end
+coroutine.wrap(ADHTQVC_fake_script)()
 
 local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Kavo-Ui/main/Darkrai%20Ui", true))()
 
