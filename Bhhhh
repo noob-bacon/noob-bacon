@@ -27,6 +27,35 @@ TextButton.TextSize = 14.000
 local function ADHTQVC_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
+	local dragging = false
+	local dragStart = nil
+	local startPos = nil
+
+	local function updatePosition(input)
+		local delta = input.Position - dragStart
+		TextButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+
+	TextButton.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = TextButton.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	TextButton.InputChanged:Connect(function(input)
+		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+			updatePosition(input)
+		end
+	end)
+
 	script.Parent.MouseButton1Down:Connect(function()
 		if script.Parent.Text == "Close😒" then
 			script.Parent.Text = "Open😎" -- Change the text.
@@ -39,6 +68,7 @@ local function ADHTQVC_fake_script() -- TextButton.LocalScript
 	
 end
 coroutine.wrap(ADHTQVC_fake_script)()
+
 
 local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Kavo-Ui/main/Darkrai%20Ui", true))()
 
