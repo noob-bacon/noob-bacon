@@ -41,7 +41,7 @@ end
 coroutine.wrap(ADHTQVC_fake_script)()
 
 
-local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/noob-bacon/miqqu/refs/heads/main/Darkrai%20improved%20to%20my%20liking", true))()
+local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlamesW/DarkraiX/refs/heads/main/UI", true))()
 
 local Library = DarkraiX:Window("Darkrai X","","",Enum.KeyCode.F6);
 
