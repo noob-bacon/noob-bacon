@@ -1,65 +1,26 @@
--- Gui to Lua
--- Version: 3.2
+-- // Game Loader \\ --
+repeat task.wait(0.25) until game:IsLoaded();
+getgenv().CurrentVersion = "1.24";
+getgenv().Credits = "flames9925";
+getgenv().Icon = "http://www.roblox.com/asset/?id=119333624150558";
 
--- Instances:
+--------------------------------[ Main Loading UI ]------------------------------------
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FlamesW/Loader/main/UI"))();
+---------------------------------------------------------------------------------------
 
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
+-- // Script Launcher \\ --
+local SupportedGames = {
+    A_Universal_Time = {6846458508,5130598377,8023712967};
+    Heaven_Stand = {4483381587};
+    Sakura_Stand = {gyayt};
+}
 
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.150417835, 0, 0.1557789, 0)
-ImageButton.Size = UDim2.new(0.0696378797, 0, 0.125628144, 0)
-ImageButton.AutoButtonColor = false
-ImageButton.Image = "http://www.roblox.com/asset/?id=123782927746589"
-ImageButton.Draggable = true
-ImageButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6", false, game)
-end)
-
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
-   LoadingTitle = "Rayfield Interface Suite",
-   LoadingSubtitle = "by Sirius",
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-   KeySystem = false, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
-
-local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
-
-local Keybind = Tab:CreateKeybind({
-   Name = "Keybind Example",
-   CurrentKeybind = "F6",
-   HoldToInteract = false,
-   Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Keybind)
-   -- The function that takes place when the keybind is pressed
-   -- The variable (Keybind) is a boolean for whether the keybind is being held or not (HoldToInteract needs to be true)
-   end,
-})
+if table.find(SupportedGames.A_Universal_Time,game.PlaceId) then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/FlamesW/NEW/main/AUT"))();
+elseif table.find(SupportedGames.Heaven_Stand,game.PlaceId) then
+    loadstring(game:HttpGet("https://github.com/noob-bacon/noob-bacon/blob/main/Bhhhh"))();
+elseif table.find(SupportedGames.Sakura_Stand,game.PlaceId) then
+    getgenv().Notify(getgenv().Icon,"Flame's Notification","Sakura stand script will be coming soon  🔥","","",5.5);
+else
+    getgenv().Notify(getgenv().Icon,"Flame's Notification","⚠️  Unsupported game detected  ⚠️","","",9e9);
+end
