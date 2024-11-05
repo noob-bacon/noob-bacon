@@ -1,4 +1,4 @@
-getgenv().CurrentVersion = "1.24";
+getgenv().CurrentVersion = "69";
 
 -- Gui to Lua
 -- Version: 3.2
