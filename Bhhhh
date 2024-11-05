@@ -7,6 +7,7 @@ getgenv().CurrentVersion = "69";
 
 local ScreenGui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
 
 --Properties:
 
@@ -15,37 +16,42 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = ScreenGui
 TextButton.AnchorPoint = Vector2.new(0.5, 0)
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BackgroundTransparency = 0.300
 TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.5, 0, 0, 0)
-TextButton.Size = UDim2.new(0.0796812773, 0, 0.0408496745, 0)
+TextButton.Position = UDim2.new(0.5, 0, -0.104999997, 0)
+TextButton.Size = UDim2.new(0.104602508, 0, 0.0653594807, 0)
 TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "Close😒"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextSize = 14.000
+TextButton.Text = "Close"
+TextButton.TextColor3 = Color3.fromRGB(245, 245, 245)
+TextButton.TextSize = 30.000
+TextButton.MouseButton1Down:Connect(function()
+	game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6" , false , game)
+end)
+
+
+UICorner.Parent = TextButton
 
 -- Scripts:
 
-local function WLBTLJA_fake_script() -- TextButton.LocalScript 
+local function DPSYSC_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	local Debounce = true
 	
 	script.Parent.MouseButton1Down:Connect(function()
-		if Debounce then
+		if Debounce == true then
 			Debounce = false
-			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Open😎" -- Change the text.
+			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Open" --Change the text.
 		else
 			Debounce = true
-			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Close😒" -- Your original text.
+			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Close" --Your original text.
 		end
 	end)
 	
 end
-coroutine.wrap(WLBTLJA_fake_script)()
-
-
+coroutine.wrap(DPSYSC_fake_script)()
 
 local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/noob-bacon/miqqu/refs/heads/main/Darkrai%20improved%20to%20my%20liking", true))()
 
