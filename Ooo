@@ -1,258 +1,40 @@
-https://linkvertise.com/1054764/anime-last-stand-buanghub?o=sharing Window:AddTab({ Title = "Teleport", Icon = "map-pin" }),
-    Misc = Window:AddTab({ Title = "Misc", Icon = "settings" })
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+task.wait(math.random())
+
+local games = {
+	[12229756] = 'https://api.luarmor.net/files/v3/loaders/223ebf430943b6eeb6b81a550e5dcb52.lua', -- ALS
+	[5292947] =  'https://api.luarmor.net/files/v3/loaders/5626ab81ffceae865d22d54cb5042edf.lua', -- ASTD
+	[15022320] = 'https://api.luarmor.net/files/v3/loaders/5626ab81ffceae865d22d54cb5042edf.lua', -- TTD
+	[5102326] = 'https://api.luarmor.net/files/v3/loaders/1b4c42f5913d7a5b7be56ee7766eb814.lua', -- ACD
+	[34121350] = 'https://api.luarmor.net/files/v3/loaders/1b4c42f5913d7a5b7be56ee7766eb814.lua', -- AD
+	[15762744] = 'https://api.luarmor.net/files/v3/loaders/b1b345a5367607ec2c5ee64e9abb4783.lua', -- SAD
+	[33859442] = 'https://raw.githubusercontent.com/buang5516/buanghub/main/BuangHub.lua', -- AR
+	[17219742] = "https://raw.githubusercontent.com/buang5516/buanghub/refs/heads/main/HUB/FreeKeySystem.lua" -- AV
 }
 
--- Lobby Tab
-Tabs.Lobby:AddParagraph({
-    Title = "Free Roles",
-    Content = "Select a role"
-})
+if games[game.CreatorId] then
+	-- Remove key system checks
+	if getgenv().executed_buang ~= nil then
+		return
+	end
+	getgenv().executed_buang = true
+	task.wait(math.random())
 
-Tabs.Lobby:AddButton({
-    Title = "Police",
-    Description = "Get Gun",
-    Callback = function()
-        local Event = game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
-        Event:FireServer("Gun", true)
-    end
-})
-
-Tabs.Lobby:AddButton({
-    Title = "Swat",
-    Description = "Get SwatGun",
-    Callback = function()
-        local Event = game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole
-        Event:FireServer("SwatGun", true)
-    end
-})
-
--- Items Tab
-Tabs.Items:AddParagraph({
-    Title = "Food",
-    Content = "Get items"
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Chips",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Chips")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Cola",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("BloxyCola")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Apple",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Apple")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Pizza",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Pizza3")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Cookie",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cookie")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Lollipop",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Lollipop")
-    end
-})
-
-Tabs.Items:AddParagraph({
-    Title = "Weapons",
-    Content = "Get weapons"
-})
-
-Tabs.Items:AddButton({
-    Title = "Sword",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("LinkedSword")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Bat",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Bat")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Hammer",
-    Callback = function()
-        local Event = game:GetService("ReplicatedStorage").RemoteEvents.BasementWeapon
-        Event:FireServer(true, "Hammer")
-    end
-})
-
-Tabs.Items:AddParagraph({
-    Title = "Other",
-    Content = "Get other items"
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Cure",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Cure")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Medkit",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("MedKit")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Key",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Key")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Teddy",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("TeddyBloxpin")
-    end
-})
-
-Tabs.Items:AddButton({
-    Title = "Get Planks",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.GiveTool:FireServer("Plank")
-    end
-})
-
--- Teleport Tab
-Tabs.Teleport:AddButton({
-    Title = "House",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-36, 3, -200)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Basement",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(71, -15, -163)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Attic",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16, 35, -220)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Upstairs",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15.68, 18.25, -218.67)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Hiding Spot",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-42.87, 6.43, -222.01)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Store",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-422, 3, -121)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Sewer",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(129, 3, -125)
-    end
-})
-
-Tabs.Teleport:AddButton({
-    Title = "Boss Room",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-39, -287, -1480)
-    end
-})
-
--- Misc Tab
-Tabs.Misc:AddButton({
-    Title = "Kill All Enemies",
-    Callback = function()
-        for i, v in pairs(game.Workspace.BadGuys:GetChildren()) do
-            for i = 1, 50 do
-                game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v, 10)
-                game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(v, 996)
-            end
-        end
-    end
-})
-
-Tabs.Misc:AddButton({
-    Title = "Open Safe",
-    Callback = function()
-        game.ReplicatedStorage.RemoteEvents.Safe:FireServer(game:GetService("Workspace").CodeNote.SurfaceGui.TextLabel.Text)
-    end
-})
-
-Tabs.Misc:AddButton({
-    Title = "Full Heal",
-    Callback = function()
-        for i = 1, 200 do
-            wait(0.005)
-            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer("Cat")
-        end
-    end
-})
-
-Tabs.Misc:AddButton({
-    Title = "Friend Cat",
-    Callback = function()
-        game:GetService("ReplicatedStorage").RemoteEvents.Cattery:FireServer()
-    end
-})
-
--- SaveManager and InterfaceManager setup
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
-
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-InterfaceManager:SetFolder("FluentScriptHub")
-SaveManager:SetFolder("FluentScriptHub/specific-game")
-
-InterfaceManager:BuildInterfaceSection(Tabs.Misc)
-SaveManager:BuildConfigSection(Tabs.Misc)
-
-Window:SelectTab(1)
-
-Fluent:Notify({
-    Title = "Fluent",
-    Content = "The script has been loaded.",
-    Duration = 8
-})
-
-SaveManager:LoadAutoloadConfig()
+	-- Game-specific logic
+	if game.CreatorId == 34121350 or game.CreatorId == 15762744 then
+		print("Loaded")
+		repeat
+			loadstring(game:HttpGet(games[game.CreatorId]))()
+			task.wait(10)
+		until getgenv().buanghub ~= nil
+	elseif game.CreatorId == 17219742 then
+		loadstring(game:HttpGet(games[game.CreatorId]))()
+		-- Remove the waiting for the key (No need to wait for `script_key` anymore)
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/695158390d5a4b3bae957c39a2f83636.lua"))()
+	else
+		loadstring(game:HttpGet(games[game.CreatorId]))()
+	end
+end
