@@ -100,3 +100,33 @@ TextButton_2.TextColor3 = Color3.fromRGB(245, 245, 245)
 TextButton_2.TextSize = 30.000
 
 UICorner_7.Parent = TextButton_2
+
+-- Function to copy the URL to clipboard when "Get Key" is clicked
+TextButton.MouseButton1Click:Connect(function()
+    -- URL to copy to clipboard
+    local url = "https://link-center.net/1254205/edward-script"
+    
+    -- Copy URL to clipboard
+    setclipboard(url)
+    
+    -- Optionally, you can display a message
+    print("URL copied to clipboard: " .. url)
+end)
+
+-- Function to check if the key is "justonekey" and run the script if true
+TextButton_2.MouseButton1Click:Connect(function()
+    local key = TextBox.Text
+    
+    -- Check if the entered key is "justonekey"
+    if key == "justonekey" then
+        -- Execute the loadstring function
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/noob-bacon/Edwardf/refs/heads/main/%F0%9F%87%B8%F0%9F%87%AC%F0%9F%87%B8%F0%9F%87%AC%F0%9F%A5%B8%F0%9F%A5%B8%F0%9F%A4%93"))()
+        
+        -- Optionally, display a confirmation message
+        print("Key verified, script executed!")
+    else
+        -- If the key is incorrect, display a message (optional)
+        print("Invalid key!")
+    end
+end)
+
