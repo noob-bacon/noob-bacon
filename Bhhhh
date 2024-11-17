@@ -1,56 +1,52 @@
-getgenv().CurrentVersion = "69";
-
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
-local ScreenGui = Instance.new("ScreenGui")
-local TextButton = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
-
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-TextButton.Parent = ScreenGui
-TextButton.AnchorPoint = Vector2.new(0.5, 0)
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BackgroundTransparency = 0.300
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.5, 0, -0.104999997, 0)
-TextButton.Size = UDim2.new(0.104602508, 0, 0.0653594807, 0)
-TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "Close"
-TextButton.TextColor3 = Color3.fromRGB(245, 245, 245)
-TextButton.TextSize = 30.000
-TextButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftControl" , false , game)
-end)
-
-
-UICorner.Parent = TextButton
-
--- Scripts:
-
-local function DPSYSC_fake_script() -- TextButton.LocalScript 
-	local script = Instance.new('LocalScript', TextButton)
-
-	local Debounce = true
-	
-	script.Parent.MouseButton1Down:Connect(function()
-		if Debounce == true then
-			Debounce = false
-			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Open" --Change the text.
-		else
-			Debounce = true
-			script.Parent.Parent.Parent.ScreenGui.TextButton.Text = "Close" --Your original text.
-		end
-	end)
-	
+local lp = game.Players.LocalPlayer
+local function getNPC()
+    local dist, thing = math.huge
+    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+        if v.Name == "Bandit [Lv. 5]" then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
 end
-coroutine.wrap(DPSYSC_fake_script)()
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/pascaldercoole1/Open-Source-Scripts/main/FreeIslands'))()
+local TweenService  = game:GetService("TweenService")
+local noclipE       = false
+local antifall      = false
+
+local function noclip()
+    for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("BasePart") and v.CanCollide == true then
+            v.CanCollide = false
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+        end
+    end
+end
+
+local function moveto(obj, speed)
+    local info = TweenInfo.new(((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - obj.Position).Magnitude)/ speed,Enum.EasingStyle.Linear)
+    local tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, info, {CFrame = obj})
+
+    if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+        antifall = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
+        antifall.Velocity = Vector3.new(0,0,0)
+        noclipE = game:GetService("RunService").Stepped:Connect(noclip)
+        tween:Play()
+    end
+        
+    tween.Completed:Connect(function()
+        antifall:Destroy()
+        noclipE:Disconnect()
+    end)
+end
+
+getgenv().bandit = true
+while bandit do task.wait()
+    pcall(function()
+        moveto(getNPC().HumanoidRootPart.CFrame + Vector3.new(0,0,0), 100)
+        game:GetService("VirtualUser"):ClickButton1(Vector2.new(9e9, 9e9))
+    end)
+end
