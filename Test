@@ -21,7 +21,7 @@ ImageButton.AutoButtonColor = false
 ImageButton.Image = "http://www.roblox.com/asset/?id=123782927746589"
 TextButton.Draggable = true
 TextButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6" , false , game)
+	game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftControl" , false , game)
 end)
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
