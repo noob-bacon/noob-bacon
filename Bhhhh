@@ -7,11 +7,13 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
+Tab:AddLabel("Notes Stage")
+
 Tab:AddButton({
-	Name = "Button!",
+	Name = "Welcome to the training session!",
 	Callback = function()
       		        if setclipboard then
-            setclipboard("gay") -- Set clipboard text
+            setclipboard("Welcome to the training session! As your trainer, I will guide you through everything you need to do in order to rank up.") -- Set clipboard text
             print("Clipboard updated!")
         else
             warn("setclipboard function is not supported in this environment.")
