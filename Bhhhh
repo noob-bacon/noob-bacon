@@ -1,1 +1,25 @@
-https://pastebin.com/raw/FHU05v2C
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Leaked", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Trainee",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Button!",
+	Callback = function()
+      		        if setclipboard then
+            setclipboard("gay") -- Set clipboard text
+            print("Clipboard updated!")
+        else
+            warn("setclipboard function is not supported in this environment.")
+        end
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
