@@ -1,42 +1,5 @@
--- Gui to Lua
--- Version: 3.2
+As a first course of action, you should graciously and with utmost professionalism extend a singular verbal cautionary notice to the individual engaging in trolling behavior, and subsequently, without hesitation or unnecessary delay, proceed to formally bring the matter to the immediate attention of an available member of the esteemed Supervision Team.
 
--- Instances:
+The Supervision Team is composed of individuals holding positions of significant responsibility and authority, including but not limited to Shift Leaders, Supervisors, Assistant Managers, and General Managers, each of whom contributes to maintaining order and discipline.
 
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextButton = Instance.new("TextButton")
-local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
-
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Frame.BackgroundTransparency = 0.500
-Frame.Position = UDim2.new(0.858712733, 0, 0.0237762257, 0)
-Frame.Size = UDim2.new(0.129513338, 0, 0.227972031, 0)
-
-TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundTransparency = 1.000
-TextButton.Size = UDim2.new(1, 0, 1, 0)
-TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "Example"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextScaled = true
-TextButton.TextSize = 50.000
-TextButton.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.TextStrokeTransparency = 0.000
-TextButton.TextWrapped = true
-TextButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftControl" , false , game)
-end)
-
-UITextSizeConstraint.Parent = TextButton
-UITextSizeConstraint.MaxTextSize = 50
-
-
-
+The Supervision Team possesses the exclusive ability to detain individuals identified as trollers. Once you have fulfilled the requirement of issuing a singular verbal warning to a troller, it is imperative that you promptly and without undue delay report the incident to any member of the highly capable and esteemed Supervision Team for appropriate action to be taken.
