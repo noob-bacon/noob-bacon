@@ -43,6 +43,10 @@ local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/
 local Luxt = Luxtl.CreateWindow("Large word answer troll", 6105620301)
 
 local fuck = Luxt:Tab("Trainee")
+local fuck2 = Luxt:Tab("Junior Operator")
+local g = fuck2:Section("drive thru stage")
+local h = fuck2:Section("Greetings stage")
+local j = fuck2:Section("Trivia")
 local q = fuck:Section("Greetings stage")
 local next = fuck:Section("Trivia")
 
@@ -79,5 +83,47 @@ end)
 next:Button("5", function()
         if setclipboard then
         setclipboard("Greet patrons cordially and inquire about their preferred ticket type with utmost professionalism.")
+    end
+end)
+
+g:Button("1", function()
+        if setclipboard then
+        setclipboard("Initiating your salutations.")
+    end
+end)
+
+h:Button("1", function()
+        if setclipboard then
+        setclipboard("Salutations and a cordial welcome to the Washiez Drive-Thru establishment! What indulgence would you like to procure in terms of sustenance or refreshment? Kindly refer to the menu positioned above.")
+    end
+end)
+
+j:Button("1", function()
+    if setclipboard then
+        setclipboard("Hinting denotes the act of soliciting a promotion, a practice that is unequivocally prohibited.")
+    end
+end)
+
+j:Button("2", function()
+    if setclipboard then
+        setclipboard("Upon attaining the rank of Senior Operator, you may partake in an additional training session to ascend to the prestigious level of Head Operator.")
+    end
+end)
+
+j:Button("3", function()
+    if setclipboard then
+        setclipboard("The Supervision Team has the authority to detain trollers. After issuing a verbal warning, report them to a Supervision Team member.")
+    end
+end)
+
+j:Button("4", function()
+    if setclipboard then
+        setclipboard("It is requisite to extend a greeting, inquire about their desired consumables, and proceed to prepare the items they request.")
+    end
+end)
+
+j:Button("5", function()
+    if setclipboard then
+        setclipboard("To convey an item to an individual, issue the command !give followed by their username.")
     end
 end)
