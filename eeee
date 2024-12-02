@@ -23,6 +23,7 @@ TextButton.TextSize = 14.000
 TextButton.Draggable = true
 TextButton.MouseButton1Down:Connect(function()
 	game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftAlt" , false , game)
+end)
 
 local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Luxware-UI-Library/main/Source.lua"))()
 
