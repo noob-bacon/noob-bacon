@@ -48,36 +48,36 @@ local next = fuck:Section("Trivia")
 
 q:Button("Hello, welcome to Washiez!", function()
         if setclipboard then
-        setclipboard("there")
+        setclipboard("Salutations and an affable welcome to Washiez! How may I facilitate your desideratum for ticket acquisition? The available designations are Regular, Extra, or Deluxe!")
     end
 end)
 
 next:Button("1", function()
         if setclipboard then
-        setclipboard("In your role as a Junior Operator, your primary responsibilities include efficiently directing the flow of traffic, skillfully operating the gates to ensure smooth entry and exit, and diligently working within the designated lanes to assist customers by distributing tickets in an organized and professional manner.")
+        setclipboard("As a Junior Operator, your role entails directing vehicular flow, operating access mechanisms, and distributing tickets within designated lanes.")
     end
 end)
 
 next:Button("2", function()
         if setclipboard then
-        setclipboard("The pinnacle of achievement within this framework is the rank of Head Operator, which represents the highest position attainable. Once you have reached the esteemed level of Head Operator, it is essential to continue demonstrating dedication, excellence, and hard work at the car wash, as these qualities may lead to further recognition and promotion in due time.")
+        setclipboard("The zenith of ranks is Head Operator; after attaining it, persistent diligence at the car wash may merit further advancement.")
     end
 end)
 
 next:Button("3", function()
         if setclipboard then
-        setclipboard("When encountering an individual engaged in trolling behavior, your first course of action should be to issue a single, clear, and formal verbal warning. Should the behavior persist, it is imperative to promptly escalate the situation by contacting a member of the distinguished Supervision Team to address the matter appropriately.")
+        setclipboard("Address trolling with a single verbal admonition, then swiftly escalate to a member of the Supervision Team.")
     end
 end)
 
 next:Button("4", function()
         if setclipboard then
-        setclipboard("The Supervision Team comprises key personnel who hold significant leadership roles, including Shift Leaders, Supervisors, Assistant Managers, and General Managers, all of whom work collaboratively to maintain a structured and efficient environment.")
+        setclipboard("The Supervision Team consists of Shift Leaders, Supervisors, Assistant Managers, and General Managers, overseeing operational integrity.")
     end
 end)
 
 next:Button("5", function()
         if setclipboard then
-        setclipboard("When engaging with a customer, it is of utmost importance to warmly greet them in a courteous and friendly manner. Following this, you should inquire with professionalism and attentiveness about their ticket preference, offering them guidance on the options available.")
+        setclipboard("Greet patrons cordially and inquire about their preferred ticket type with utmost professionalism.")
     end
 end)
