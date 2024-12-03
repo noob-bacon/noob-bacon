@@ -1,3 +1,41 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local TextButton = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextButton.Name = "TextButton"
+TextButton.Parent = ScreenGui
+TextButton.AnchorPoint = Vector2.new(1, 1)
+TextButton.BackgroundColor3 = Color3.fromRGB(106, 116, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.188515708, 0, 0.235294119, 0)
+TextButton.Size = UDim2.new(0.0541711822, 0, 0.081699349, 0)
+TextButton.Image = "rbxassetid://10734924219"
+TextButton.Draggable = true
+
+UICorner.Parent = TextButton
+
+-- Scripts:
+
+local function WPZU_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.MouseButton1Down:Connect(function()
+		game:GetService("VirtualInputManager"):SendKeyEvent(true, "Comma" , false , game)
+	end)
+	
+end
+
 --keybind to open is comma
 --made by Gi#7331
 
