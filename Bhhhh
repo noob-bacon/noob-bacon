@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
-local hitboxSize = Vector3.new(12, 12, 12)
+local hitboxSize = Vector3.new(20, 20, 20)
 local isExpanded = false
 local isInvisibleHitboxActive = false
 local isSpeedBoostActive = false
