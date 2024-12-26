@@ -1,6 +1,7 @@
 local balls = workspace.Towers:GetChildren()
 local ballscounter = 1
 
+-- Rename towers
 for _, tower in pairs(balls) do
     if tower.Name == "Default" then
         tower.Name = "Default" .. ballscounter
@@ -8,20 +9,32 @@ for _, tower in pairs(balls) do
     end
 end
 
-while true do
-    for i = 1, ballscounter - 1 do
-        local args = {
-            [1] = "Troops",
-            [2] = "Abilities",
-            [3] = "Activate",
-            [4] = {
-                ["Troop"] = workspace.Towers["Default" .. i],
-                ["Name"] = "Call Of Arms",
-                ["Data"] = {}
+-- Optimized activation loop
+spawn(function() -- Run in a separate thread to prevent freezing
+    while true do
+        for i = 1, ballscounter - 1 do
+            local args = {
+                [1] = "Troops",
+                [2] = "Abilities",
+                [3] = "Activate",
+                [4] = {
+                    ["Troop"] = workspace.Towers["Default" .. i],
+                    ["Name"] = "Call Of Arms",
+                    ["Data"] = {}
+                }
             }
-        }
-
-        game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
-        wait(10.1)
+            
+            -- Use FireServer if possible
+            local success, err = pcall(function()
+                game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
+            end)
+            
+            if not success then
+                warn("Failed to activate ability for tower " .. i .. ": " .. tostring(err))
+            end
+            
+            wait(10.1) -- Delay before activating the next tower
+        end
+        wait(0.1) -- Small delay to prevent hard locking
     end
-end
+end)
