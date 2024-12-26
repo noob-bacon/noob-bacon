@@ -16,8 +16,8 @@ Tab:AddButton({
 local ballscounter = 1
 
 for _, tower in pairs(balls) do
-    if tower.Name == "Galactic" then
-        tower.Name = "Galactic" .. ballscounter
+    if tower.Name == "Default" then
+        tower.Name = "Default" .. ballscounter
         ballscounter += 1 
     end
 end
@@ -29,7 +29,7 @@ while true do
             [2] = "Abilities",
             [3] = "Activate",
             [4] = {
-                ["Troop"] = workspace.Towers["Galactic" .. i],
+                ["Troop"] = workspace.Towers["Default" .. i],
                 ["Name"] = "Call Of Arms",
                 ["Data"] = {}
             }
