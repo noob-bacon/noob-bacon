@@ -1,53 +1,94 @@
--- Gui to Lua
--- Version: 3.2
+local function LoadAsset(assetName)
+	local assetPath = assetName
 
--- Instances:
+	if isfile(assetPath) then
+		return getcustomasset(assetPath)
+	else
+		return nil
+	end
+end
 
+local balls = Instance.new("ScreenGui")
+local TextButton = Instance.new("TextButton")
 local ScreenGui = Instance.new("ScreenGui")
-local TextLabel = Instance.new("TextLabel")
-local UICorner = Instance.new("UICorner")
+local Frame = Instance.new("Frame")
+local VideoFrame = Instance.new("VideoFrame")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
 -- Properties:
+balls.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+balls.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextButton.Parent = balls
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.224550903, 0, 0.130708665, 0)
+TextButton.Size = UDim2.new(0, 50, 0, 50)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextSize = 14.000
+
+-- Toggle Frame visibility when button is pressed:
+TextButton.MouseButton1Down:Connect(function()
+	Frame.Visible = not Frame.Visible
+end)
+
+-- Draggable functionality for PC and Mobile:
+local UserInputService = game:GetService("UserInputService")
+local dragging, dragInput, dragStart, startPos
+
+local function update(input)
+	local delta = input.Position - dragStart
+	TextButton.Position = UDim2.new(
+		startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y
+	)
+end
+
+TextButton.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = TextButton.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+TextButton.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		update(input)
+	end
+end)
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
+ScreenGui.DisplayOrder = 999999999
 
-TextLabel.Parent = ScreenGui
-TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.21357286, 0, 0.215748027, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = game.Workspace.Ghost:GetAttribute("GhostType")
-TextLabel.TextColor3 = Color3.fromRGB(245, 245, 245)
-TextLabel.TextSize = 30.000
-TextLabel.TextStrokeColor3 = Color3.fromRGB(25, 25, 25)
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.5, 0, 0.200000003, 0)
+Frame.Size = UDim2.new(0.400000006, 0, 0.355194777, 0)
 
-UICorner.Parent = TextLabel
+VideoFrame.Parent = Frame
+VideoFrame.Size = UDim2.new(1, 0, 1, 0)
+VideoFrame.Looped = true
+VideoFrame.Playing = true
+VideoFrame.Video = LoadAsset("vid_720p")
 
--- Dragging System:
-
-local UIS = game:GetService("UserInputService")
-local dragging, dragInput, startPos, startMousePos
-
-TextLabel.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        startPos = TextLabel.Position
-        startMousePos = input.Position
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-TextLabel.InputChanged:Connect(function(input)
-    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-        local delta = input.Position - startMousePos
-        TextLabel.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end)
+UIAspectRatioConstraint.Parent = Frame
+UIAspectRatioConstraint.AspectRatio = 1.777
